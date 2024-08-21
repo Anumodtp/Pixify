@@ -34,9 +34,11 @@ body {
 .auth-link {
   color: #646cff;
   font-weight: 500;
+  font-size: 15px;
   text-decoration: none;
   margin: 0 1rem;
   transition: color 0.3s;
+  border: none;
 }
 
 .auth-link:hover {
