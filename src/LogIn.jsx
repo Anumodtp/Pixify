@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './Auth.css'; // You can add styling for auth components here
 
-function LogIn() {
+function LogIn({ onSignUpClick }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,6 +32,12 @@ function LogIn() {
         />
         <button type="submit">Log In</button>
       </form>
+      <p className="auth-switch">
+        Don’t have an account?{' '}
+        <a href="#" onClick={onSignUpClick}>
+          Sign Up
+        </a>
+      </p>
     </div>
   );
 }

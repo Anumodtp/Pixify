@@ -1,28 +1,34 @@
 // src/App.jsx
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
-import SignUp from './SignUp';
-import LogIn from './LogIn';
+import React, { useState } from "react";
+import SignUp from "./SignUp";
+import LogIn from "./LogIn";
+import "./App.css";
 
 function App() {
-  return (
-    <Router>
-      <div id="root">
-        <h1>Pixifyy</h1>
-        <p id="description">Pixifyy is amazing.</p>
-        <button className="explore-button">Explore</button>
-        <div className="auth-links">
-          <Link to="/signup" className="auth-link">SignUp</Link>
-          or
-          <Link to="/login" className="auth-link">LogIn</Link>
-        </div>
+  const [view, setView] = useState("home"); // "home", "login", "signup"
 
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
-        </Routes>
-      </div>
-    </Router>
+  return (
+    <div id="root">
+      {view === "home" && (
+        <>
+          <h1>Pixifyy</h1>
+          <p id="description">Pixifyy is amazing.</p>
+          <button className="explore-button">Explore</button>
+          <div className="auth-links">
+            <a href="#" className="auth-link" onClick={() => setView("signup")}>
+              SignUp
+            </a>
+            or
+            <a href="#" className="auth-link" onClick={() => setView("login")}>
+              LogIn
+            </a>
+          </div>
+        </>
+      )}
+
+      {view === "signup" && <SignUp onLoginClick={() => setView("login")} />}
+      {view === "login" && <LogIn onSignUpClick={() => setView("signup")} />}
+    </div>
   );
 }
 
