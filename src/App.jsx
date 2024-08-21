@@ -1,26 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+// src/App.jsx
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.css';
+import SignUp from './SignUp';
+import LogIn from './LogIn';
 
 function App() {
   return (
-    <>
+    <Router>
       <div id="root">
         <h1>Pixifyy</h1>
         <p id="description">Pixifyy is amazing.</p>
-        <button class="explore-button">Explore</button>
-        <div class="auth-links">
-          <a href="#" class="auth-link">
-            SignUp
-          </a>
+        <button className="explore-button">Explore</button>
+        <div className="auth-links">
+          <Link to="/signup" className="auth-link">SignUp</Link>
           or
-          <a href="#" class="auth-link">
-            LogIn
-          </a>
+          <Link to="/login" className="auth-link">LogIn</Link>
         </div>
+
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
 
