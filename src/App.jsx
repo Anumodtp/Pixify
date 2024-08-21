@@ -1,26 +1,34 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// src/App.jsx
+import React, { useState } from "react";
+import SignUp from "./SignUp";
+import LogIn from "./LogIn";
 import "./App.css";
 
 function App() {
+  const [view, setView] = useState("home"); // "home", "login", "signup"
+
   return (
-    <>
-      <div id="root">
-        <h1>Pixifyy</h1>
-        <p id="description">Pixifyy is amazing.</p>
-        <button class="explore-button">Explore</button>
-        <div class="auth-links">
-          <a href="#" class="auth-link">
-            SignUp
-          </a>
-          or
-          <a href="#" class="auth-link">
-            LogIn
-          </a>
-        </div>
-      </div>
-    </>
+    <div id="root">
+      {view === "home" && (
+        <>
+          <h1>Pixifyy</h1>
+          <p id="description">Pixifyy is amazing.</p>
+          <button className="explore-button">Explore</button>
+          <div className="auth-links">
+            <a href="#" className="auth-link" onClick={() => setView("signup")}>
+              SignUp
+            </a>
+            or
+            <a href="#" className="auth-link" onClick={() => setView("login")}>
+              LogIn
+            </a>
+          </div>
+        </>
+      )}
+
+      {view === "signup" && <SignUp onLoginClick={() => setView("login")} />}
+      {view === "login" && <LogIn onSignUpClick={() => setView("signup")} />}
+    </div>
   );
 }
 
